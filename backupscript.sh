@@ -67,14 +67,12 @@ echo "Archief $filenaam werd gemaakt."
 
 #Nu steken we alle bestanden uit de array in de backup map. Dit gebeurt via tar.
 echo "De bestanden worden in $filenaam geplaatst..."
-for bestand in ${array[@]} # ==> Gaat door elk bestand die in de array staat
+for bestand in ${array[@]}
 do
-	if [ "$maakzip" = true ]; then # Kijkt na of de gebruiker wilt of we er een zip van moeten maken
-		tar -zcvPf $filenaam $bestand --force-local # Dit voegt bestanden toe aan een tar-file, --force-local zorgt ervoor dat het lokaal blijft
-		# -zcvPf ==> zip, create, verbose, absolute names, files ==> doet moeilijker omdat het gezipt is
+	if [ "$maakzip" = true ]; then
+		tar -zcvPf $filenaam $bestand --force-local
 	else
 		tar -rPf $filenaam $bestand --force-local
-		# -rPf ==> append, absolute names, files
 	fi
 done
 
