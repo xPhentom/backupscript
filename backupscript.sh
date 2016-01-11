@@ -101,7 +101,10 @@ foutmelding()
 toonhelp()
 {
 	echo Backupscript maakt een backup van specifieke folders en bestanden die werden opgegeven in een config-bestand. Voeg het volledige pad in het config-bestand om dit correct te laten werken.
-	echo Gebruik -z als parameter om de backup meteen te zippen.
+	echo "Gebruik -h of --help om naar de helpfunctie te gaan."
+	echo
+	echo "Gebruik -z of --zip als parameter om de backup meteen te zippen."
+	echo "Alle bestanden worden opgeslagen op de allerbovenste map, in archief."
 	exit 1
 }
 
@@ -110,7 +113,9 @@ toonhelp()
 #Eerst testen we of er geen parameters werden meegegeven. -h/--help geeft de toonHelp functie weer, -z bepaalt ofdat er een zip moet gemaakt worden of niet.
 case $1 in
 	-h | --help) toonhelp;;
-	-z) maakzip=true;;
+	-z | --zip) maakzip=true;;
+        *) echo "U heeft het verkeerde commando ingevoerd"
+           toonhelp;;
 esac
 
 #Daarna stellen we de vraag om aan te duiden waar het config-bestand te vinden is. (gebeurt niet als de toonHelp functie wordt opgeroepen)
